@@ -7,19 +7,19 @@ import {store} from './store';
 import {HomeScreen, SelectedLocationScreen} from './screens';
 import {RootStackParamList} from './types';
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen
+        <RootStack.Navigator>
+          <RootStack.Screen name="Home" component={HomeScreen} />
+          <RootStack.Screen
             name="SelectedLocation"
             component={SelectedLocationScreen}
           />
-        </Stack.Navigator>
+        </RootStack.Navigator>
       </NavigationContainer>
     </Provider>
   );

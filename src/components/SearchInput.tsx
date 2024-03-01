@@ -3,7 +3,7 @@ import {StyleSheet, TextInput, View, FlatList, Text} from 'react-native';
 import {getLocations} from '../api';
 import {SearchResult} from '../types';
 
-const SearchInput = ({navigation}) => {
+const SearchInput = ({navigation}: {navigation: any}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<
     SearchResult[] | null

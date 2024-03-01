@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Button} from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
 import {switchToCelsium, switchToFahrenheit} from '../features/unitsSlice';
 import {getSelectedLocation} from '../features/selectedLocationSlice';
 import {Loader} from '../components';
-import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../types';
 
 import {
   useAppDispatch,
@@ -12,12 +14,9 @@ import {
   getDayOfWeek,
 } from '../utils';
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'SelectedLocation'>;
-  route: RouteProp<RootStackParamList, 'SelectedLocation'>;
-};
+type Props = NativeStackScreenProps<RootStackParamList, 'SelectedLocation'>;
 
-const SelectedLocationScreen = ({ route }: { route: RouteProp<YourNavigatorParamList, 'SelectedLocation'> }) => {
+const SelectedLocationScreen = ({route}: Props) => {
   const {selectedLocation, isLoading} = useAppSelector(
     store => store.selectedLocation,
   );
@@ -43,7 +42,7 @@ const SelectedLocationScreen = ({ route }: { route: RouteProp<YourNavigatorParam
   if (!selectedLocation) {
     return (
       <View style={styles.screenContainer}>
-        <Text style={styles.primarytText}>Error: Data not available</Text>;
+        <Text style={styles.primarytText}>Error: Data not available</Text>
       </View>
     );
   }
