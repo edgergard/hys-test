@@ -57,7 +57,7 @@ const SelectedLocationScreen = ({route}: Props) => {
   const feelsLike = selectedLocation.current.feels_like.toFixed(0);
   const humidity = selectedLocation.current.humidity;
   const windSpeed = selectedLocation.current.wind_speed;
-  const dailyForecast = selectedLocation?.daily.slice(0, 7);
+  const weeklyForecast = selectedLocation?.daily.slice(0, 7);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -127,17 +127,21 @@ const SelectedLocationScreen = ({route}: Props) => {
         </View>
 
         <View style={styles.blockContainer}>
-          <Text style={styles.primarytText}>Daily forecast</Text>
+          <Text style={styles.primarytText}>Weekly forecast</Text>
 
-          {dailyForecast.map(daily => (
-            <View key={daily.dt} style={styles.forecastContainer}>
-              <Text style={styles.forecastText}>{getDayOfWeek(daily.dt)}</Text>
-
+          {weeklyForecast.map(forecast => (
+            <View key={forecast.dt} style={styles.forecastContainer}>
               <Text style={styles.forecastText}>
-                {`${daily.temp.day.toFixed(0)}${sign}`}
+                {getDayOfWeek(forecast.dt)}
               </Text>
 
-              <Text style={styles.forecastText}>{daily.weather[0].main}</Text>
+              <Text style={styles.forecastText}>
+                {`${forecast.temp.day.toFixed(0)}${sign}`}
+              </Text>
+
+              <Text style={styles.forecastText}>
+                {forecast.weather[0].main}
+              </Text>
             </View>
           ))}
         </View>
